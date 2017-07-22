@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,12 +16,13 @@ import java.util.ArrayList;
  */
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MyViewHolder> {
-
+    private eventsFragment myFrag;
     private ArrayList<ImageDataClass> dataset;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView eventName;
         ImageView myImages;
+
         public CardView cardView;
         public MyViewHolder(View myItem){
             super(myItem);
@@ -28,15 +30,19 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MyViewHolder
             myImages = (ImageView)myItem.findViewById(R.id.myImageView);
             cardView = (CardView)myItem.findViewById(R.id.card_view);
             cardView.setOnClickListener(this);
+            myImages.setOnClickListener(this);
+            eventName.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-
+            String x = String.valueOf(dataset.get(getAdapterPosition()).getText());
+            myFrag.goToNext(x);
         }
     }
-    public ImageAdapter(ArrayList<ImageDataClass> das){
+    public ImageAdapter(ArrayList<ImageDataClass> das, eventsFragment frag1){
         dataset = das;
+        myFrag = frag1;
     }
 
     @Override

@@ -1,0 +1,55 @@
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum"
+            android:id="@+id/main_heading"
+            android:textColor="@color/textBlack"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/text_huge" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_desc"
+            android:text="Lorem ipsum domat Lorem ipsum domat Lorem ipsum domat Lorem ipsum domat Lorem ipsum domat"
+            android:textColor="@color/textBlack"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:textSize="@dimen/text_medium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rules"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:textColor="@color/textBlack"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/rules"
+            android:textSize="@dimen/text_huge" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_height="wrap_content"
+            android:id="@+id/rules_content"
+            android:text="Lorem ipsum domat Lorem ipsum domat Lorem ipsum domat Lorem ipsum domat Lorem ipsum domat"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/text_medium" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
