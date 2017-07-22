@@ -39,7 +39,7 @@ public class eventsFragment extends Fragment {
     String names2[] = {"main_img_kirito.png","rukario_old.jpg"};
     String eventNames2[] = {"Extempore","Game Room"};
     FirebaseStorage storage = FirebaseStorage.getInstance();
-    ArrayList<ImageDataClass> datas;
+    ArrayList<ImageDataClass> datas,datas2;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -62,7 +62,8 @@ public class eventsFragment extends Fragment {
     }
 
     public void setAdapter2(){
-        datas = new ArrayList<>();
+
+        datas2 = new ArrayList<>();
         for(int i=0;i<2;i++){
             final String x = eventNames2[i];
             StorageReference storageRef = storage.getReferenceFromUrl("gs://testimages-6f71f.appspot.com").child(names2[i]);
@@ -71,9 +72,14 @@ public class eventsFragment extends Fragment {
                 storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(getActivity(),"Success",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"Success",Toast.LENGTH_SHORT).show();
                         bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                        datas.add(new ImageDataClass(bitmap,x));
+                        datas2.add(new ImageDataClass(bitmap,x));
+                        flagCount2++;
+                        if (flagCount2 == 2) {
+                            ImageAdapter adapter = new ImageAdapter(datas2);
+                            Non_Tech_Events.setAdapter(adapter);
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -87,12 +93,13 @@ public class eventsFragment extends Fragment {
                 bitmap = null;
             }
 
-//            datas.add(new ImageDataClass(myMap,eventNames[i]));
         }
-        ImageAdapter adapter = new ImageAdapter(datas);
-        Non_Tech_Events.setAdapter(adapter);
     }
+    int flagCount = 0;
+    int flagCount2 = 0;
+
     public void setAdapter1(){
+
         datas = new ArrayList<>();
         for(int i=0;i<3;i++){
             final String x = eventNames[i];
@@ -102,9 +109,14 @@ public class eventsFragment extends Fragment {
                 storageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(getActivity(),"Success",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"Success",Toast.LENGTH_SHORT).show();
                         bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                         datas.add(new ImageDataClass(bitmap,x));
+                        flagCount++;
+                        if (flagCount == 3) {
+                            ImageAdapter adapter = new ImageAdapter(datas);
+                            Tech_Events.setAdapter(adapter);
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -118,10 +130,8 @@ public class eventsFragment extends Fragment {
                 bitmap = null;
             }
 
-//            datas.add(new ImageDataClass(myMap,eventNames[i]));
         }
-        ImageAdapter adapter = new ImageAdapter(datas);
-        Tech_Events.setAdapter(adapter);
+
     }
 
     Bitmap bitmap;
